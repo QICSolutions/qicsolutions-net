@@ -109,7 +109,7 @@ a:hover {
 }
 
 .hero {
-  padding: 5.5rem 0 4.5rem;
+  padding: 5.5rem 0 3.5rem;
 }
 
 .eyebrow {
@@ -178,8 +178,61 @@ a:hover {
   text-decoration: none;
 }
 
+.values {
+  padding: 1rem 0 4.5rem;
+}
+
+.values-title {
+  margin: 0 0 0.5rem;
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.values-tagline {
+  margin: 0 0 2rem;
+  color: var(--accent);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.values-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.value-card {
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-elevated));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.5rem 1.6rem;
+}
+
+.value-letter {
+  margin: 0 0 0.35rem;
+  font-family: var(--serif);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.value-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+}
+
+.value-card p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
 .products {
-  padding: 1rem 0 5rem;
+  padding: 0 0 5rem;
 }
 
 .products h2,
