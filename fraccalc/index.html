@@ -83,35 +83,44 @@
       </div>
     </div>
   </footer>
-  <script src="/fraccalc-assets-a.js"></script>
-  <script src="/fraccalc-assets-b.js"></script>
   <script>
   (function () {
-    var A = window.FRAC_ASSETS;
-    if (!A) return;
-    var icon = 'data:image/png;base64,' + A.icon;
-    var feature = 'data:image/jpeg;base64,' + A.feature;
-    document.getElementById('app-icon').src = icon;
-    var link = document.createElement('link');
-    link.rel = 'icon'; link.href = icon; document.head.appendChild(link);
-    document.getElementById('hero-art').src = feature;
-    var shots = [
-      [A.shot_calc, 'Calculation', 'Mixed, sixteenths, and decimal together'],
-      [A.shot_input, 'Mixed input', 'A b/c whole + numerator / denominator'],
-      [A.shot_notepad, 'Notepad', 'Labeled saves for real job math'],
-      [A.shot_share, 'Share', 'Send the notepad with a QR code'],
-      [A.shot_pro, 'Unlock Pro', 'One-time $0.99 — remove ads']
-    ];
-    var root = document.getElementById('shots');
-    for (var i = 0; i < shots.length; i++) {
-      var b64 = shots[i][0], title = shots[i][1], cap = shots[i][2];
-      if (!b64) continue;
-      var fig = document.createElement('figure');
-      fig.className = 'shot';
-      fig.innerHTML = '<img alt="' + title + '" loading="lazy" /><figcaption><strong>' + title + '</strong><span>' + cap + '</span></figcaption>';
-      fig.querySelector('img').src = 'data:image/jpeg;base64,' + b64;
-      root.appendChild(fig);
+    async function b64img(path, mime) {
+      var t = await fetch(path).then(function (r) {
+        if (!r.ok) throw new Error(path + ' ' + r.status);
+        return r.text();
+      });
+      return 'data:' + mime + ';base64,' + t.trim();
     }
+    (async function () {
+      try {
+        var icon = await b64img('/assets/fraccalc/icon.b64', 'image/png');
+        var feature = await b64img('/assets/fraccalc/feature.b64', 'image/jpeg');
+        document.getElementById('app-icon').src = icon;
+        var link = document.createElement('link');
+        link.rel = 'icon'; link.href = icon; document.head.appendChild(link);
+        document.getElementById('hero-art').src = feature;
+        var shots = [
+          ['/assets/fraccalc/shot-calc.b64', 'Calculation', 'Mixed, sixteenths, and decimal together'],
+          ['/assets/fraccalc/shot-input.b64', 'Mixed input', 'A b/c whole + numerator / denominator'],
+          ['/assets/fraccalc/shot-notepad.b64', 'Notepad', 'Labeled saves for real job math'],
+          ['/assets/fraccalc/shot-share.b64', 'Share', 'Send the notepad with a QR code'],
+          ['/assets/fraccalc/shot-pro.b64', 'Unlock Pro', 'One-time $0.99 — remove ads']
+        ];
+        var root = document.getElementById('shots');
+        for (var i = 0; i < shots.length; i++) {
+          var path = shots[i][0], title = shots[i][1], cap = shots[i][2];
+          var src = await b64img(path, 'image/jpeg');
+          var fig = document.createElement('figure');
+          fig.className = 'shot';
+          fig.innerHTML = '<img alt="' + title + '" loading="lazy" /><figcaption><strong>' + title + '</strong><span>' + cap + '</span></figcaption>';
+          fig.querySelector('img').src = src;
+          root.appendChild(fig);
+        }
+      } catch (e) {
+        console.error('Frac Calc assets failed to load', e);
+      }
+    })();
   })();
   </script>
 </body>
