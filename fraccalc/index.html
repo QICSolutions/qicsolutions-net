@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Frac Calc — Fraction Calculator by QIC Solutions LLC. Fast, clear fraction math for trades and school." />
+  <title>Frac Calc — Fraction Calculator | QIC Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/fraccalc.css" />
+</head>
+<body class="fraccalc">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="/">QIC Solutions</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/fraccalc/" aria-current="page">Frac Calc</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:hello@qicsolutions.net">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <img class="app-icon" id="app-icon" width="88" height="88" alt="Frac Calc app icon" />
+        <p class="eyebrow">QIC Solutions LLC</p>
+        <h1>Frac Calc</h1>
+        <p class="subtitle">Fraction Calculator</p>
+        <p class="lede">Fast, clear fraction math.</p>
+        <p class="sublede">Mixed numbers, sixteenths, and decimals — without decimal guesswork.</p>
+        <div class="actions">
+          <a class="btn play" href="https://play.google.com/store/apps" rel="noopener noreferrer" target="_blank">Get it on Google Play — Frac Calc</a>
+          <a class="btn ghost" href="mailto:hello@qicsolutions.net">hello@qicsolutions.net</a>
+        </div>
+        <p class="play-note">Swap in the Play listing URL when it goes live.</p>
+      </div>
+      <img class="hero-art" id="hero-art" width="1024" height="500" alt="Frac Calc — A b/c Fraction Calculator" />
+    </section>
+    <section class="wrap shots-block" aria-label="App screenshots">
+      <h2>Inside the app</h2>
+      <div class="shots" id="shots"></div>
+    </section>
+    <section class="wrap features" aria-label="Features">
+      <h2>What it does</h2>
+      <ul>
+        <li>Add, subtract, multiply, divide, square root, and x² with real fractions</li>
+        <li>See mixed number, 1/16, and decimal results together</li>
+        <li>Stacked fraction display — not ugly ASCII-only fractions</li>
+        <li>Mixed input keypad: A b/c for whole + numerator / denominator</li>
+        <li>Save labeled notepad entries (conduit, door frame, rolling offset, and more)</li>
+        <li>History tab next to Notepad</li>
+        <li>Share the notepad with a QR code</li>
+        <li>Dark and light mode</li>
+        <li>No account — works on your device</li>
+      </ul>
+    </section>
+    <section class="wrap pro" aria-label="Pro unlock">
+      <h2>Unlock Pro · $0.99</h2>
+      <p>Free Frac Calc may show a banner ad. Pro is a <strong>one-time</strong> in-app unlock that removes ads. Restore purchase anytime on Google Play. Not a second app.</p>
+    </section>
+    <section class="wrap other-apps" aria-label="Other QIC apps">
+      <h2>Also from QIC Solutions</h2>
+      <p><strong>QIC Craftsman</strong> — clear, concise training for craftsmen.<br />
+      <strong>7 Tells</strong> — practice reading micro expressions. Coming soon.</p>
+      <p><a href="/">Back to qicsolutions.net</a></p>
+    </section>
+  </main>
+  <footer class="foot">
+    <div class="wrap">
+      <p><strong>QIC Solutions LLC</strong><br />
+      720 S Dobson Rd Unit-99, Mesa, AZ 85202<br />
+      <a href="mailto:hello@qicsolutions.net">hello@qicsolutions.net</a></p>
+      <p>
+        <a href="/privacy.html">Privacy</a> ·
+        <a href="/">qicsolutions.net</a><br />
+        Package: <code>net.qicsolutions.fraccalc</code>
+      </p>
+      <p class="tag">Quality. Integrity. Consistency.</p>
+    </div>
+  </footer>
+  <script src="/fraccalc-assets-a.js"></script>
+  <script src="/fraccalc-assets-b.js"></script>
+  <script>
+  (function () {
+    var A = window.FRAC_ASSETS;
+    var icon = 'data:image/png;base64,' + A.icon;
+    var feature = 'data:image/jpeg;base64,' + A.feature;
+    document.getElementById('app-icon').src = icon;
+    var link = document.createElement('link');
+    link.rel = 'icon'; link.href = icon; document.head.appendChild(link);
+    document.getElementById('hero-art').src = feature;
+    var shots = [
+      [A.shot_calc, 'Calculation', 'Mixed, sixteenths, and decimal together'],
+      [A.shot_input, 'Mixed input', 'A b/c whole + numerator / denominator'],
+      [A.shot_notepad, 'Notepad', 'Labeled saves for real job math'],
+      [A.shot_share, 'Share', 'Send the notepad with a QR code'],
+      [A.shot_pro, 'Unlock Pro', 'One-time $0.99 — remove ads']
+    ];
+    var root = document.getElementById('shots');
+    for (var i = 0; i < shots.length; i++) {
+      var b64 = shots[i][0], title = shots[i][1], cap = shots[i][2];
+      var fig = document.createElement('figure');
+      fig.className = 'shot';
+      fig.innerHTML = '<img alt="' + title + '" loading="lazy" /><figcaption><strong>' + title + '</strong><span>' + cap + '</span></figcaption>';
+      fig.querySelector('img').src = 'data:image/jpeg;base64,' + b64;
+      root.appendChild(fig);
+    }
+  })();
+  </script>
+</body>
+</html>
