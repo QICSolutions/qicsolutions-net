@@ -75,6 +75,20 @@ function initNav() {
   }
 }
 
+// No backend yet: submitting opens the visitor's email app with a pre-filled
+// message to support@qicsolutions.net so no signup is lost.
+const LAUNCH_LIST_EMAIL = "support@qicsolutions.net";
+
+function buildLaunchListMailto(email) {
+  const subject = "QIC Craftsman launch list";
+  const body =
+    "Please add me to the QIC Craftsman launch list.\n\n" +
+    "My email: " + (email || "") + "\n";
+  return "mailto:" + LAUNCH_LIST_EMAIL +
+    "?subject=" + encodeURIComponent(subject) +
+    "&body=" + encodeURIComponent(body);
+}
+
 function initSignupForm() {
   const form = document.getElementById("signup-form");
   if (!form) return;
@@ -82,19 +96,22 @@ function initSignupForm() {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const input = form.querySelector('input[type="email"]');
-    if (!input || !input.value.trim()) return;
+    const email = input ? input.value.trim() : "";
+    if (input && (!email || !input.checkValidity())) {
+      input.focus();
+      input.reportValidity && input.reportValidity();
+      return;
+    }
 
     form.classList.add("success");
     const btn = form.querySelector("button");
     const originalText = btn.textContent;
-    btn.textContent = "You're on the list!";
-    btn.disabled = true;
-    input.value = "";
+    btn.textContent = "Opening your email app…";
+    window.location.href = buildLaunchListMailto(email);
 
     setTimeout(() => {
       form.classList.remove("success");
       btn.textContent = originalText;
-      btn.disabled = false;
     }, 4000);
   });
 }
