@@ -5,25 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Frac Calc — Fraction Calculator by QIC Solutions LLC. Fast, clear fraction math for trades and school." />
   <title>Frac Calc — Fraction Calculator | QIC Solutions</title>
+  <script src="/theme-init.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/fraccalc.css" />
 </head>
 <body class="fraccalc">
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header">
-    <div class="wrap">
-      <a class="logo" href="/">QIC Solutions</a>
-      <nav aria-label="Primary">
-        <a href="/">Home</a>
-        <a href="/fraccalc/" aria-current="page">Frac Calc</a>
-        <a href="/privacy">Privacy</a>
-        <a href="mailto:support@qicsolutions.net">Contact</a>
-      </nav>
-    </div>
+    <nav class="nav container" aria-label="Primary">
+      <a class="logo" href="/" aria-label="QIC Solutions home">
+        <span class="logo-mark">QIC</span>
+        <span class="logo-text">Solutions</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="/#products">Products</a></li>
+        <li><a href="/craftsman/">Craftsman</a></li>
+        <li><a href="/fraccalc/" aria-current="page">Frac Calc</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="mailto:support@qicsolutions.net" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
   </header>
-  <main id="main" class="wrap page">
+  <main id="main" class="fc-page">
+    <div class="container fc-inner">
     <section class="hero-fc" aria-label="Frac Calc">
       <div>
         <img class="app-icon" id="app-icon" width="72" height="72" alt="Frac Calc app icon" />
@@ -33,8 +43,8 @@
         <p class="lede">Fast, clear fraction math.</p>
         <p class="sublede">Mixed numbers, sixteenths, and decimals — without decimal guesswork.</p>
         <div class="actions">
-          <a class="btn primary" href="https://play.google.com/store/apps" rel="noopener noreferrer" target="_blank">Get it on Google Play</a>
-          <a class="btn ghost" href="mailto:support@qicsolutions.net">support@qicsolutions.net</a>
+          <a class="btn btn-primary" href="https://play.google.com/store/apps" rel="noopener noreferrer" target="_blank">Get it on Google Play</a>
+          <a class="btn btn-secondary" href="mailto:support@qicsolutions.net">support@qicsolutions.net</a>
         </div>
         <p class="play-note">Swap in the Play listing URL when it goes live.</p>
       </div>
@@ -72,15 +82,38 @@
       <p><strong>7 Tells</strong> — practice reading micro expressions. Coming soon.</p>
       <p><a href="/">Back to qicsolutions.net</a></p>
     </section>
+    </div>
   </main>
   <footer class="site-footer">
-    <div class="wrap">
-      <p>QIC Solutions LLC · <a href="mailto:support@qicsolutions.net">support@qicsolutions.net</a></p>
-      <div class="footer-links">
-        <a href="/privacy">Privacy</a>
-        <a href="/">Home</a>
-        <span><code>net.qicsolutions.fraccalc</code></span>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <span class="logo-mark">QIC</span>
+          <span class="logo-text">Solutions</span>
+        </a>
+        <p>Quality · Integrity · Consistency</p>
+        <p class="footer-domain">qicsolutions.net</p>
       </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div>
+          <h4>Products</h4>
+          <ul>
+            <li><a href="/craftsman/">QIC Craftsman</a></li>
+            <li><a href="/fraccalc/">Frac Calc</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/privacy">Privacy</a></li>
+            <li><a href="/delete-data">Delete data</a></li>
+            <li><a href="mailto:support@qicsolutions.net">support@qicsolutions.net</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom container">
+      <p>&copy; <span id="year">2026</span> QIC Solutions LLC · <code>net.qicsolutions.fraccalc</code></p>
     </div>
   </footer>
   <script src="/frac-assets/icon_0.js"></script>
@@ -139,5 +172,6 @@
     }
   })();
   </script>
+  <script src="/site.js"></script>
 </body>
 </html>
