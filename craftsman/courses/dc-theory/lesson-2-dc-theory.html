@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lesson 2: DC Theory — voltage, current, resistance, Ohm's Law, and circuit analysis from QIC Craftsman.">
+  <title>Lesson 2: DC Theory | QIC Craftsman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <script src="../../js/theme-init.js"></script>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="../../css/course.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect fill='%230f172a' width='32' height='32' rx='6'/><text x='16' y='22' font-family='system-ui' font-size='14' font-weight='700' fill='%23f59e0b' text-anchor='middle'>Q</text></svg>">
+</head>
+<body class="lesson-page">
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="../../index.html" class="logo" aria-label="QIC Craftsman home">
+        <span class="logo-mark">QIC</span>
+        <span class="logo-text">Craftsman</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="../../index.html#training">Training</a></li>
+        <li><a href="index.html">Course Overview</a></li>
+        <li><a href="#calculator" class="nav-cta">Calculator</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="lesson-layout">
+    <aside class="lesson-sidebar" aria-label="Lesson navigation">
+      <div class="lesson-sidebar-inner">
+        <p class="lesson-sidebar-label">Lesson 2</p>
+        <h2 class="lesson-sidebar-title">DC Theory</h2>
+        <nav>
+          <ol class="lesson-toc">
+            <li><a href="#intro" class="active">Overview</a></li>
+            <li><a href="#quantities">Core Quantities</a></li>
+            <li><a href="#ohms-law">Ohm's Law</a></li>
+            <li><a href="#power">Electrical Power</a></li>
+            <li><a href="#series">Series Circuits</a></li>
+            <li><a href="#parallel">Parallel Circuits</a></li>
+            <li><a href="#field">DC in the Field</a></li>
+            <li><a href="#calculator">Ohm's Law Calculator</a></li>
+            <li><a href="#videos">Video Tutorials</a></li>
+            <li><a href="#review">Key Takeaways</a></li>
+          </ol>
+        </nav>
+        <p class="lesson-progress-label">Lesson progress</p>
+        <div class="lesson-progress-bar"><span id="reading-progress"></span></div>
+      </div>
+    </aside>
+
+    <article class="lesson-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="index.html">DC Theory</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Lesson 2</span>
+      </nav>
+
+      <header class="lesson-header">
+        <p class="eyebrow">Lesson 2 of Core Path · After Safety First</p>
+        <h1>DC Theory</h1>
+        <p class="lesson-subtitle">Understand how direct current behaves — so you can troubleshoot controls, batteries, and low-voltage systems with confidence.</p>
+        <div class="lesson-meta">
+          <span>⏱ 75 minutes</span>
+          <span>⚡ Apprentice level</span>
+          <span>🧮 Calculator + YouTube videos</span>
+        </div>
+      </header>
+
+      <section class="lesson-callout lesson-callout-primary" id="intro">
+        <h2>Why DC Theory Is Lesson 2</h2>
+        <p>
+          After <a href="../electrical-safety/lesson-1-safety-first.html" style="color: var(--amber-400); font-weight: 600;">Safety First</a>, DC theory is the foundation that makes every troubleshooting call click. Before you bend conduit or size conductors, you need to understand how voltage, current, and resistance interact.
+        </p>
+        <p>
+          <strong>DC (direct current)</strong> flows in one direction. You'll encounter it in control circuits, fire alarm systems, door access, solar DC wiring, battery backup, and vehicle electrical work. Master DC theory and the AC work ahead makes more sense too.
+        </p>
+      </section>
+
+      <section class="lesson-section" id="objectives">
+        <h2>Learning Objectives</h2>
+        <ul class="lesson-checklist">
+          <li>Define voltage, current, resistance, and power in plain language</li>
+          <li>Apply Ohm's Law to solve for any unknown quantity</li>
+          <li>Calculate power using P = V × I and its variations</li>
+          <li>Analyze simple series and parallel DC circuits</li>
+          <li>Connect DC theory to real field applications and troubleshooting</li>
+        </ul>
+      </section>
+
+      <section class="lesson-section" id="quantities">
+        <h2>The Four Core Quantities</h2>
+        <p>Every electrical calculation you'll ever do comes back to these four:</p>
+
+        <div class="hazard-grid">
+          <div class="hazard-card">
+            <h3>Voltage (V)</h3>
+            <p>Electrical pressure that pushes current through a circuit. Measured in <strong>volts (V)</strong>. Think of it as the "push" — a 12V battery pushes less than a 48V solar string.</p>
+          </div>
+          <div class="hazard-card">
+            <h3>Current (I)</h3>
+            <p>The flow of electrons through a conductor. Measured in <strong>amperes (A)</strong>. Current is what kills — respect it, even at low voltage.</p>
+          </div>
+          <div class="hazard-card">
+            <h3>Resistance (R)</h3>
+            <p>Opposition to current flow. Measured in <strong>ohms (Ω)</strong>. Every conductor and load has resistance — wire, resistors, coils, and connections.</p>
+          </div>
+          <div class="hazard-card">
+            <h3>Power (P)</h3>
+            <p>The rate of energy transfer. Measured in <strong>watts (W)</strong>. A 60W load at 12V draws more current than the same wattage at 120V.</p>
+          </div>
+        </div>
+
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>Quantity</th>
+              <th>Symbol</th>
+              <th>Unit</th>
+              <th>Measured With</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Voltage</td><td>V or E</td><td>Volts (V)</td><td>Multimeter (parallel)</td></tr>
+            <tr><td>Current</td><td>I</td><td>Amperes (A)</td><td>Clamp meter or ammeter (series)</td></tr>
+            <tr><td>Resistance</td><td>R</td><td>Ohms (Ω)</td><td>Ohmmeter (de-energized)</td></tr>
+            <tr><td>Power</td><td>P</td><td>Watts (W)</td><td>Calculated or wattmeter</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="lesson-section" id="ohms-law">
+        <h2>Ohm's Law</h2>
+        <p>The most important formula in electrical work:</p>
+        <p class="lesson-formula"><strong>V = I × R</strong></p>
+        <p>Rearrange to solve for any variable:</p>
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>Solve for</th>
+              <th>Formula</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Current</td><td>I = V ÷ R</td><td>12V ÷ 6Ω = 2A</td></tr>
+            <tr><td>Resistance</td><td>R = V ÷ I</td><td>24V ÷ 4A = 6Ω</td></tr>
+            <tr><td>Voltage</td><td>V = I × R</td><td>3A × 8Ω = 24V</td></tr>
+          </tbody>
+        </table>
+
+        <div class="lesson-callout lesson-callout-warning">
+          <strong>Field example:</strong> A 24V control circuit powers a relay coil rated at 120Ω. Current draw: I = 24 ÷ 120 = <strong>0.2A (200 mA)</strong>. Know this before sizing your power supply.
+        </div>
+      </section>
+
+      <section class="lesson-section" id="power">
+        <h2>Electrical Power</h2>
+        <p>Power tells you how much work the circuit is doing — and how much heat it generates:</p>
+        <p class="lesson-formula"><strong>P = V × I</strong></p>
+        <p>Combine with Ohm's Law for two more forms you'll use constantly:</p>
+        <ul class="lesson-bullets">
+          <li><strong>P = I² × R</strong> — useful when you know current and resistance</li>
+          <li><strong>P = V² ÷ R</strong> — useful when you know voltage and resistance</li>
+        </ul>
+
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>Scenario</th>
+              <th>Calculation</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>12V circuit, 2A draw</td><td>P = 12 × 2</td><td>24 W</td></tr>
+            <tr><td>2A through 10Ω resistor</td><td>P = 2² × 10</td><td>40 W</td></tr>
+            <tr><td>48V across 96Ω load</td><td>P = 48² ÷ 96</td><td>24 W</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="lesson-section" id="series">
+        <h2>Series DC Circuits</h2>
+        <p>Components connected end-to-end — one path for current:</p>
+        <ul class="lesson-bullets">
+          <li><strong>Current is the same</strong> through every component</li>
+          <li><strong>Voltage divides</strong> across each load proportionally to resistance</li>
+          <li><strong>Total resistance adds:</strong> R<sub>total</sub> = R₁ + R₂ + R₃...</li>
+        </ul>
+
+        <div class="lesson-callout lesson-callout-warning">
+          <strong>Example:</strong> Three resistors in series — 4Ω, 6Ω, and 10Ω — on a 20V supply. R<sub>total</sub> = 20Ω. Current: I = 20 ÷ 20 = <strong>1A</strong>. Voltage across each: 4V, 6V, and 10V.
+        </div>
+      </section>
+
+      <section class="lesson-section" id="parallel">
+        <h2>Parallel DC Circuits</h2>
+        <p>Components connected across the same two points — multiple current paths:</p>
+        <ul class="lesson-bullets">
+          <li><strong>Voltage is the same</strong> across every branch</li>
+          <li><strong>Current divides</strong> among branches inversely to resistance</li>
+          <li><strong>Total resistance:</strong> 1/R<sub>total</sub> = 1/R₁ + 1/R₂ + 1/R₃...</li>
+        </ul>
+
+        <div class="lesson-callout lesson-callout-warning">
+          <strong>Example:</strong> Two 12Ω resistors in parallel on a 24V supply. R<sub>total</sub> = 6Ω. Total current: I = 24 ÷ 6 = <strong>4A</strong> (2A per branch).
+        </div>
+
+        <p>Most branch circuits in buildings are parallel — each outlet and fixture gets the same voltage independently.</p>
+      </section>
+
+      <section class="lesson-section" id="field">
+        <h2>DC in the Field</h2>
+        <p>Where you'll apply DC theory as a working electrician:</p>
+
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>Application</th>
+              <th>Typical Voltage</th>
+              <th>Why DC Theory Matters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Control relays & contactors</td><td>24V DC</td><td>Sizing power supplies, troubleshooting coil circuits</td></tr>
+            <tr><td>Fire alarm & security</td><td>12–24V DC</td><td>End-of-line resistor calculations, loop troubleshooting</td></tr>
+            <tr><td>Solar PV (DC side)</td><td>Up to 600V+ DC</td><td>String voltage, current, and power calculations</td></tr>
+            <tr><td>Battery backup (UPS)</td><td>12–48V DC</td><td>Amp-hour capacity, discharge current limits</td></tr>
+            <tr><td>LED drivers & low voltage</td><td>12–24V DC</td><td>Load matching, voltage drop on long runs</td></tr>
+          </tbody>
+        </table>
+
+        <div class="lesson-callout lesson-callout-warning">
+          <strong>Remember:</strong> DC circuits can be just as dangerous as AC at sufficient voltage and current. Always apply what you learned in Lesson 1 — test, verify, and de-energize before working.
+        </div>
+      </section>
+
+      <section class="lesson-section lesson-calculator-section" id="calculator">
+        <h2>Ohm's Law Calculator</h2>
+        <p>Enter any two values to solve for voltage, current, resistance, and power instantly.</p>
+
+        <div class="calculator-panel">
+          <form id="dc-calculator" class="calculator-form" onsubmit="return false;">
+            <div class="calc-field">
+              <label for="dc-voltage">Voltage (V)</label>
+              <input type="number" id="dc-voltage" min="0" step="any" placeholder="e.g. 24">
+            </div>
+            <div class="calc-field">
+              <label for="dc-current">Current (A)</label>
+              <input type="number" id="dc-current" min="0" step="any" placeholder="e.g. 2">
+            </div>
+            <div class="calc-field">
+              <label for="dc-resistance">Resistance (Ω)</label>
+              <input type="number" id="dc-resistance" min="0" step="any" placeholder="e.g. 12">
+            </div>
+          </form>
+
+          <div class="calculator-output">
+            <h3>Results</h3>
+            <div id="dc-calc-results" class="calc-results">
+              <p class="calc-placeholder">Enter any two values to solve for the third — power is calculated automatically.</p>
+            </div>
+            <p id="dc-calc-tip" class="calc-tip"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="videos">
+        <h2>Video Tutorials</h2>
+        <p>Reinforce DC theory with these YouTube tutorials. Watch, then practice with the calculator above.</p>
+
+        <div class="video-filters" role="group" aria-label="Filter videos">
+          <button class="dc-video-filter-btn video-filter-btn active" data-filter="all">All</button>
+          <button class="dc-video-filter-btn video-filter-btn" data-filter="fundamentals">Fundamentals</button>
+          <button class="dc-video-filter-btn video-filter-btn" data-filter="ohms-law">Ohm's Law</button>
+          <button class="dc-video-filter-btn video-filter-btn" data-filter="circuits">Circuits</button>
+          <button class="dc-video-filter-btn video-filter-btn" data-filter="power">Power</button>
+          <button class="dc-video-filter-btn video-filter-btn" data-filter="tools">Tools</button>
+        </div>
+
+        <div class="video-gallery" id="dc-video-gallery"></div>
+
+        <p class="lesson-note">Videos are hosted on YouTube and provided for educational reference. Channel attribution is shown on each card.</p>
+      </section>
+
+      <section class="lesson-section lesson-review" id="review">
+        <h2>Key Takeaways</h2>
+        <div class="takeaway-grid">
+          <div class="takeaway-item">
+            <span class="takeaway-num">01</span>
+            <p>DC Theory is Lesson 2 — the theoretical foundation right after Safety First.</p>
+          </div>
+          <div class="takeaway-item">
+            <span class="takeaway-num">02</span>
+            <p>V = I × R. Know it forward, backward, and in your sleep.</p>
+          </div>
+          <div class="takeaway-item">
+            <span class="takeaway-num">03</span>
+            <p>Power = V × I. Higher current at the same voltage means more watts and more heat.</p>
+          </div>
+          <div class="takeaway-item">
+            <span class="takeaway-num">04</span>
+            <p>Series: resistance adds, current stays constant. Parallel: voltage stays constant, resistance divides.</p>
+          </div>
+          <div class="takeaway-item">
+            <span class="takeaway-num">05</span>
+            <p>Controls, alarms, solar, and batteries all run on DC — this lesson applies tomorrow on the job.</p>
+          </div>
+        </div>
+
+        <div class="lesson-complete-card">
+          <h3>Lesson 2 Complete</h3>
+          <p>You've mastered DC fundamentals. Next: <strong>Lesson 3: AC Theory</strong> — waveforms, RMS, power factor, and an AC power calculator.</p>
+          <div class="lesson-complete-actions">
+            <a href="../electrical-safety/lesson-1-safety-first.html" class="btn btn-secondary">← Lesson 1: Safety</a>
+            <a href="../ac-theory/lesson-3-ac-theory.html" class="btn btn-primary">Lesson 3: AC Theory →</a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom container">
+      <p>&copy; 2026 QIC Craftsman · A <a href="/">QIC Solutions</a> product. Quality · Integrity · Consistency</p>
+    </div>
+  </footer>
+
+  <script src="../../js/dc-data.js"></script>
+  <script src="../../js/dc-calculator.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

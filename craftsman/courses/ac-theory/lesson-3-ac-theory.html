@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lesson 3: AC Theory — alternating current, RMS, power factor, and phase power from QIC Craftsman.">
+  <title>Lesson 3: AC Theory | QIC Craftsman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <script src="../../js/theme-init.js"></script>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="../../css/course.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect fill='%230f172a' width='32' height='32' rx='6'/><text x='16' y='22' font-family='system-ui' font-size='14' font-weight='700' fill='%23f59e0b' text-anchor='middle'>Q</text></svg>">
+</head>
+<body class="lesson-page">
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="../../index.html" class="logo" aria-label="QIC Craftsman home">
+        <span class="logo-mark">QIC</span>
+        <span class="logo-text">Craftsman</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="../../index.html#training">Training</a></li>
+        <li><a href="index.html">Course Overview</a></li>
+        <li><a href="#calculator" class="nav-cta">Calculator</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="lesson-layout">
+    <aside class="lesson-sidebar" aria-label="Lesson navigation">
+      <div class="lesson-sidebar-inner">
+        <p class="lesson-sidebar-label">Lesson 3</p>
+        <h2 class="lesson-sidebar-title">AC Theory</h2>
+        <nav>
+          <ol class="lesson-toc">
+            <li><a href="#intro" class="active">Overview</a></li>
+            <li><a href="#ac-vs-dc">AC vs DC</a></li>
+            <li><a href="#waveform">Waveforms & RMS</a></li>
+            <li><a href="#power">AC Power</a></li>
+            <li><a href="#reactance">Reactance</a></li>
+            <li><a href="#phases">Single & 3-Phase</a></li>
+            <li><a href="#field">AC in the Field</a></li>
+            <li><a href="#calculator">AC Power Calculator</a></li>
+            <li><a href="#videos">Video Tutorials</a></li>
+            <li><a href="#review">Key Takeaways</a></li>
+          </ol>
+        </nav>
+        <p class="lesson-progress-label">Lesson progress</p>
+        <div class="lesson-progress-bar"><span id="reading-progress"></span></div>
+      </div>
+    </aside>
+
+    <article class="lesson-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="index.html">AC Theory</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Lesson 3</span>
+      </nav>
+
+      <header class="lesson-header">
+        <p class="eyebrow">Lesson 3 of Core Path · After DC Theory</p>
+        <h1>AC Theory</h1>
+        <p class="lesson-subtitle">Alternating current powers every building you wire — understand the waveform, the math, and the real-world impact on loads.</p>
+        <div class="lesson-meta">
+          <span>⏱ 90 minutes</span>
+          <span>〰️ Apprentice level</span>
+          <span>🧮 Calculator + YouTube videos</span>
+        </div>
+      </header>
+
+      <section class="lesson-callout lesson-callout-primary" id="intro">
+        <h2>Why AC Theory Is Lesson 3</h2>
+        <p>
+          You learned <a href="../dc-theory/lesson-2-dc-theory.html" style="color: var(--amber-400); font-weight: 600;">DC Theory</a> in Lesson 2 — voltage, current, and resistance in one direction. Now you need <strong>AC (alternating current)</strong>, because that's what comes out of every breaker, feeds every motor, and defines how you size conductors and overcurrent protection.
+        </p>
+        <p>
+          AC isn't just DC that changes direction. Phase relationships, reactance, and power factor all affect how circuits behave in the real world. This lesson gives you the foundation to understand those effects before you dive into NEC load calculations and motor circuits.
+        </p>
+      </section>
+
+      <section class="lesson-section" id="objectives">
+        <h2>Learning Objectives</h2>
+        <ul class="lesson-checklist">
+          <li>Explain how AC differs from DC and why the utility grid uses AC</li>
+          <li>Describe sine waves, frequency, and RMS voltage values</li>
+          <li>Distinguish real, apparent, and reactive power — and calculate power factor</li>
+          <li>Understand basic inductive and capacitive reactance in AC circuits</li>
+          <li>Compare single-phase and three-phase power distribution</li>
+        </ul>
+      </section>
+
+      <section class="lesson-section" id="ac-vs-dc">
+        <h2>AC vs DC</h2>
+        <p>In a DC circuit, current flows in one steady direction. In an AC circuit, current <strong>reverses direction</strong> at a fixed rate — in North America, 60 times per second (60 Hz).</p>
+
+        <div class="hazard-grid">
+          <div class="hazard-card">
+            <h3>DC</h3>
+            <p>Constant polarity. Batteries, control circuits, solar DC strings, and electronics. Ohm's Law applies directly: V = I × R.</p>
+          </div>
+          <div class="hazard-card">
+            <h3>AC</h3>
+            <p>Reversing polarity. Utility power, branch circuits, motors, transformers. Requires RMS values and power factor for accurate calculations.</p>
+          </div>
+        </div>
+
+        <p>Why AC won the grid:</p>
+        <ul class="lesson-bullets">
+          <li><strong>Transformers work with AC</strong> — easy voltage step-up for transmission, step-down for distribution</li>
+          <li><strong>Lower losses</strong> at high voltage over long distances</li>
+          <li><strong>Motors are simpler</strong> on AC — induction motors dominate industry</li>
+        </ul>
+      </section>
+
+      <section class="lesson-section" id="waveform">
+        <h2>Waveforms & RMS Values</h2>
+        <p>Standard US utility power is a <strong>sine wave</strong> at <strong>60 Hz</strong> — one complete cycle every 1/60th of a second.</p>
+
+        <p class="lesson-formula"><strong>V<sub>peak</sub> = V<sub>RMS</sub> × √2 ≈ V<sub>RMS</sub> × 1.414</strong></p>
+
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>Common RMS Voltage</th>
+              <th>Peak Voltage</th>
+              <th>Application</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>120V</td><td>~170V</td><td>Residential branch circuits (line to neutral)</td></tr>
+            <tr><td>208V</td><td>~294V</td><td>Commercial three-phase (line to line)</td></tr>
+            <tr><td>240V</td><td>~339V</td><td>Residential split-phase (line to line)</td></tr>
+            <tr><td>277V</td><td>~392V</td><td>Commercial lighting (line to neutral on 480V system)</td></tr>
+            <tr><td>480V</td><td>~679V</td><td>Commercial three-phase (line to line)</td></tr>
+          </tbody>
+        </table>
+
+        <div class="lesson-callout lesson-callout-warning">
+          <strong>Why RMS matters:</strong> Your multimeter reads RMS. A "120V" outlet delivers 120V RMS — not peak. Peak voltage is what determines insulation stress. Always know which value you're working with.
+        </div>
+      </section>
+
+      <section class="lesson-section" id="power">
+        <h2>AC Power — Real, Apparent, and Reactive</h2>
+        <p>In AC circuits with inductive or capacitive loads, voltage and current are not always in phase. That changes how power is calculated:</p>
+
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Symbol</th>
+              <th>Unit</th>
+              <th>Formula</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Real power (true power)</td><td>P</td><td>Watts (W)</td><td>P = V × I × cos θ</td></tr>
+            <tr><td>Apparent power</td><td>S</td><td>Volt-Amps (VA)</td><td>S = V × I</td></tr>
+            <tr><td>Reactive power</td><td>Q</td><td>VAR</td><td>Q = V × I × sin θ</td></tr>
+          </tbody>
+        </table>
+
+        <p class="lesson-formula"><strong>Power Factor (PF) = P ÷ S = cos θ</strong></p>
+
+        <ul class="lesson-bullets">
+          <li><strong>PF = 1.0</strong> — purely resistive load (incandescent heater, resistive element). Voltage and current are in phase.</li>
+          <li><strong>PF = 0.7–0.9</strong> — typical induction motor under load. Some current does "reactive" work magnetizing the motor.</li>
+          <li><strong>Low PF</strong> — utility and large facilities care because low PF means more current for the same real power, increasing losses.</li>
+        </ul>
+
+        <div class="lesson-callout lesson-callout-warning">
+          <strong>Field example:</strong> A 120V motor drawing 10A with PF = 0.85. Real power: P = 120 × 10 × 0.85 = <strong>1,020 W</strong>. Apparent power: S = 120 × 10 = <strong>1,200 VA</strong>. You're billed on real power (kWh), but conductors and breakers must handle the full 10A.
+        </div>
+      </section>
+
+      <section class="lesson-section" id="reactance">
+        <h2>Reactance & Impedance</h2>
+        <p>AC circuits include opposition beyond pure resistance:</p>
+
+        <div class="hazard-grid">
+          <div class="hazard-card">
+            <h3>Inductive Reactance (X<sub>L</sub>)</h3>
+            <p>Opposition from inductors, motor windings, and ballasts. Increases with frequency. Causes current to lag voltage.</p>
+          </div>
+          <div class="hazard-card">
+            <h3>Capacitive Reactance (X<sub>C</sub>)</h3>
+            <p>Opposition from capacitors and power factor correction equipment. Causes current to lead voltage.</p>
+          </div>
+        </div>
+
+        <p class="lesson-formula"><strong>Impedance (Z) = √(R² + X²)</strong></p>
+        <p>For apprentice-level troubleshooting, remember: motors add inductance, capacitors correct power factor, and your clamp meter reads current based on impedance — not just resistance.</p>
+      </section>
+
+      <section class="lesson-section" id="phases">
+        <h2>Single-Phase vs Three-Phase</h2>
+
+        <h3>Single-Phase</h3>
+        <p>One AC waveform. Standard in US homes — 120V line-to-neutral, 240V line-to-line from a center-tapped transformer. Powers lighting, receptacles, and small appliances.</p>
+
+        <h3>Three-Phase</h3>
+        <p>Three AC waveforms, 120° apart. Standard in commercial and industrial. Delivers more power with less copper for the same voltage class.</p>
+
+        <table class="lesson-table">
+          <thead>
+            <tr>
+              <th>System</th>
+              <th>Line-to-Neutral</th>
+              <th>Line-to-Line</th>
+              <th>Common Use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>120/240V Split-Phase</td><td>120V</td><td>240V</td><td>Residential</td></tr>
+            <tr><td>120/208V Wye</td><td>120V</td><td>208V</td><td>Commercial (small)</td></tr>
+            <tr><td>277/480V Wye</td><td>277V</td><td>480V</td><td>Commercial (large)</td></tr>
+          </tbody>
+        </table>
+
+        <div class="lesson-callout lesson-callout-warning">
+          <strong>Remember:</strong> √3 (≈ 1.732) appears in three-phase calculations. Line-to-line voltage = line-to-neutral × √3 on wye systems. You'll use this in load calculations later.
+        </div>
+      </section>
+
+      <section class="lesson-section" id="field">
+        <h2>AC in the Field</h2>
+        <p>Where AC theory shows up on your next job:</p>
+        <ul class="lesson-bullets">
+          <li><strong>Sizing breakers and conductors</strong> — based on full current draw (apparent power), not just real power</li>
+          <li><strong>Motor startups</strong> — inrush current can be 5–8× FLA; AC phase relationships affect this</li>
+          <li><strong>Voltage drop</strong> — AC impedance (not just DC resistance) affects long runs</li>
+          <li><strong>Harmonics</strong> — non-linear loads (VFDs, LED drivers) distort the sine wave; know when to escalate</li>
+          <li><strong>Power factor correction</strong> — capacitors on large motor circuits to improve PF and reduce utility penalties</li>
+        </ul>
+      </section>
+
+      <section class="lesson-section lesson-calculator-section" id="calculator">
+        <h2>AC Power Calculator</h2>
+        <p>Enter RMS voltage, current, and power factor to calculate real power (W), apparent power (VA), reactive power (VAR), and peak voltage.</p>
+
+        <div class="calculator-panel">
+          <form class="calculator-form" onsubmit="return false;">
+            <div class="calc-field">
+              <label for="ac-voltage">Voltage RMS (V)</label>
+              <input type="number" id="ac-voltage" min="0" step="any" placeholder="e.g. 120">
+            </div>
+            <div class="calc-field">
+              <label for="ac-current">Current RMS (A)</label>
+              <input type="number" id="ac-current" min="0" step="any" placeholder="e.g. 10">
+            </div>
+            <div class="calc-field">
+              <label for="ac-power-factor">Power factor (0–1)</label>
+              <input type="number" id="ac-power-factor" min="0.01" max="1" step="0.01" value="0.85">
+              <input type="range" id="ac-pf-range" min="0.1" max="1" step="0.01" value="0.85" class="calc-range">
+            </div>
+          </form>
+
+          <div class="calculator-output">
+            <h3>Results</h3>
+            <div id="ac-calc-results" class="calc-results">
+              <p class="calc-placeholder">Enter voltage, current, and power factor to calculate AC power values.</p>
+            </div>
+            <p id="ac-calc-tip" class="calc-tip"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="videos">
+        <h2>Video Tutorials</h2>
+        <p>Watch these YouTube tutorials to visualize AC concepts, then practice with the calculator above.</p>
+
+        <div class="video-filters" role="group" aria-label="Filter videos">
+          <button class="ac-video-filter-btn video-filter-btn active" data-filter="all">All</button>
+          <button class="ac-video-filter-btn video-filter-btn" data-filter="fundamentals">Fundamentals</button>
+          <button class="ac-video-filter-btn video-filter-btn" data-filter="rms">RMS</button>
+          <button class="ac-video-filter-btn video-filter-btn" data-filter="power-factor">Power Factor</button>
+          <button class="ac-video-filter-btn video-filter-btn" data-filter="phases">Phases</button>
+          <button class="ac-video-filter-btn video-filter-btn" data-filter="reactance">Reactance</button>
+        </div>
+
+        <div class="video-gallery" id="ac-video-gallery"></div>
+
+        <p class="lesson-note">Videos are hosted on YouTube and provided for educational reference. Channel attribution is shown on each card.</p>
+      </section>
+
+      <section class="lesson-section lesson-review" id="review">
+        <h2>Key Takeaways</h2>
+        <div class="takeaway-grid">
+          <div class="takeaway-item">
+            <span class="takeaway-num">01</span>
+            <p>AC reverses direction at 60 Hz in the US — it's what powers every branch circuit and motor.</p>
+          </div>
+          <div class="takeaway-item">
+            <span class="takeaway-num">02</span>
+            <p>Multimeters read RMS. Peak voltage = RMS × √2. A 120V outlet peaks at ~170V.</p>
+          </div>
+          <div class="takeaway-item">
+            <span class="takeaway-num">03</span>
+            <p>Real power (W) = V × I × PF. Breakers and wire size must handle full current, not just real power.</p>
+          </div>
+          <div class="takeaway-item">
+            <span class="takeaway-num">04</span>
+            <p>Motors add inductance and lower power factor. Capacitors correct PF on large installations.</p>
+          </div>
+          <div class="takeaway-item">
+            <span class="takeaway-num">05</span>
+            <p>Residential is single-phase. Commercial is typically three-phase — know your line and line-to-line voltages.</p>
+          </div>
+        </div>
+
+        <div class="lesson-complete-card">
+          <h3>Lesson 3 Complete</h3>
+          <p>You now understand both DC and AC fundamentals. Next: <strong>Lesson 4: Conduit Bending</strong> — put theory into practice with a bend calculator and video tutorials.</p>
+          <div class="lesson-complete-actions">
+            <a href="../dc-theory/lesson-2-dc-theory.html" class="btn btn-secondary">← Lesson 2: DC Theory</a>
+            <a href="../conduit-bending/lesson-4-conduit-bending.html" class="btn btn-primary">Lesson 4: Conduit Bending →</a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom container">
+      <p>&copy; 2026 QIC Craftsman · A <a href="/">QIC Solutions</a> product. Quality · Integrity · Consistency</p>
+    </div>
+  </footer>
+
+  <script src="../../js/ac-data.js"></script>
+  <script src="../../js/ac-calculator.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/lesson.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
