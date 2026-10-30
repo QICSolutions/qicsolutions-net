@@ -1,3 +1,4 @@
+/* Course content is under review: every course is a non-clickable "Coming soon" preview. */
 const QIC_COURSES = [
   {
     id: "electrical-safety",
@@ -16,8 +17,8 @@ const QIC_COURSES = [
         title: "Safety First",
         subtitle: "The foundation of every QIC course",
         duration: "45 min",
-        status: "available",
-        path: "courses/electrical-safety/lesson-1-safety-first.html",
+        status: "coming-soon",
+        path: null,
       },
       {
         id: "ppe-selection",
@@ -76,8 +77,8 @@ const QIC_COURSES = [
         title: "DC Theory",
         subtitle: "Ohm's Law, circuits, and field applications",
         duration: "75 min",
-        status: "available",
-        path: "courses/dc-theory/lesson-2-dc-theory.html",
+        status: "coming-soon",
+        path: null,
       },
     ],
   },
@@ -100,8 +101,8 @@ const QIC_COURSES = [
         title: "AC Theory",
         subtitle: "Waveforms, power factor, and phase power",
         duration: "90 min",
-        status: "available",
-        path: "courses/ac-theory/lesson-3-ac-theory.html",
+        status: "coming-soon",
+        path: null,
       },
     ],
   },
@@ -124,8 +125,8 @@ const QIC_COURSES = [
         title: "Conduit Bending",
         subtitle: "Calculator, marks, and video walkthroughs",
         duration: "60 min",
-        status: "available",
-        path: "courses/conduit-bending/lesson-4-conduit-bending.html",
+        status: "coming-soon",
+        path: null,
       },
     ],
   },

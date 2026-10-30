@@ -1254,3 +1254,37 @@ h3 {
 .footer-bottom a:hover {
   color: var(--white);
 }
+
+/* Courses temporarily disabled — "Coming soon" state */
+.course-soon {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--amber-600);
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  cursor: default;
+}
+.course-card { cursor: default; }
+.coming-soon-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--amber-600);
+}
+.section-header .coming-soon-note { margin-top: 0.75rem; }
+.hero-content .coming-soon-note { display: flex; margin: 1.5rem 0 1.25rem; }
+.soon-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--amber-500);
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);
+}

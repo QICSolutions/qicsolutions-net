@@ -1,39 +1,11 @@
-const CORE_PATH_COURSES = {
-  "electrical-safety": {
-    href: "courses/electrical-safety/index.html",
-    linkText: "Start Lesson 1 →",
-    badge: "featured",
-  },
-  "dc-theory": {
-    href: "courses/dc-theory/lesson-2-dc-theory.html",
-    linkText: "Start Lesson 2 →",
-    badge: "lesson2",
-  },
-  "ac-theory": {
-    href: "courses/ac-theory/lesson-3-ac-theory.html",
-    linkText: "Start Lesson 3 →",
-    badge: "lesson3",
-  },
-  "conduit-bending": {
-    href: "courses/conduit-bending/lesson-4-conduit-bending.html",
-    linkText: "Start Lesson 4 →",
-    badge: "lesson4",
-  },
+// Courses are temporarily disabled while content is reviewed.
+// Cards are a non-clickable preview of upcoming topics; core-path badges are kept for styling.
+const CORE_PATH_BADGES = {
+  "electrical-safety": "featured",
+  "dc-theory": "lesson2",
+  "ac-theory": "lesson3",
+  "conduit-bending": "lesson4",
 };
-
-function getCourseLink(course) {
-  if (CORE_PATH_COURSES[course.id]) {
-    return CORE_PATH_COURSES[course.id];
-  }
-  if (course.requiresLesson) {
-    return {
-      href: "courses/electrical-safety/lesson-1-safety-first.html",
-      linkText: "Complete Safety First →",
-      badge: null,
-    };
-  }
-  return { href: "#contact", linkText: "Coming Soon →", badge: null };
-}
 
 function renderCourses(filter = "all") {
   const grid = document.getElementById("courses-grid");
@@ -42,7 +14,7 @@ function renderCourses(filter = "all") {
   grid.innerHTML = getSortedCourses()
     .filter((c) => filter === "all" || c.category === filter)
     .map((course) => {
-      const { href, linkText, badge } = getCourseLink(course);
+      const badge = CORE_PATH_BADGES[course.id] || null;
       const badgeClass = badge ? ` course-card-${badge}` : "";
 
       return `
@@ -57,7 +29,7 @@ function renderCourses(filter = "all") {
           <p>${course.description}</p>
           <div class="course-footer">
             <span class="course-duration">${course.duration}</span>
-            <a href="${href}" class="course-link">${linkText}</a>
+            <span class="course-soon">Coming soon</span>
           </div>
         </div>
       </article>
