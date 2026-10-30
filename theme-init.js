@@ -1,9 +1,10 @@
+/* Dark by default for everyone; only an explicit toggle choice (shared "qic-theme" key) overrides it. */
 (function () {
-  var theme = null;
-  try { theme = localStorage.getItem("qic-theme"); } catch (e) {}
-  if (theme !== "light" && theme !== "dark") {
-    theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  }
+  var theme = "dark";
+  try {
+    var stored = localStorage.getItem("qic-theme");
+    if (stored === "light" || stored === "dark") theme = stored;
+  } catch (e) {}
   document.documentElement.setAttribute("data-theme", theme);
   document.documentElement.style.colorScheme = theme;
 })();

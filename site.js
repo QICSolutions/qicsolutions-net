@@ -8,7 +8,7 @@
   function preferred() {
     var s = stored();
     if (s === "light" || s === "dark") return s;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    return "dark"; // default for everyone, regardless of device setting
   }
   function apply(theme) {
     document.documentElement.setAttribute("data-theme", theme);
@@ -71,12 +71,6 @@
     initNav();
     var year = document.getElementById("year");
     if (year) year.textContent = new Date().getFullYear();
-    var mq = window.matchMedia("(prefers-color-scheme: dark)");
-    if (mq.addEventListener) {
-      mq.addEventListener("change", function (e) {
-        if (!stored()) apply(e.matches ? "dark" : "light");
-      });
-    }
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

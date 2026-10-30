@@ -1,9 +1,10 @@
 const THEME_KEY = "qic-theme";
 
 function getPreferredTheme() {
-  const stored = localStorage.getItem(THEME_KEY);
+  let stored = null;
+  try { stored = localStorage.getItem(THEME_KEY); } catch (e) {}
   if (stored === "light" || stored === "dark") return stored;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return "dark"; // default for everyone, regardless of device setting
 }
 
 function applyTheme(theme) {
@@ -24,12 +25,12 @@ function updateThemeToggle(theme) {
 
 function setTheme(theme) {
   applyTheme(theme);
-  localStorage.setItem(THEME_KEY, theme);
+  try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
   updateThemeToggle(theme);
 }
 
 function toggleTheme() {
-  const current = document.documentElement.getAttribute("data-theme") || "light";
+  const current = document.documentElement.getAttribute("data-theme") || "dark";
   setTheme(current === "dark" ? "light" : "dark");
 }
 
@@ -61,13 +62,7 @@ function createThemeToggle() {
 function initTheme() {
   applyTheme(getPreferredTheme());
   createThemeToggle();
-  updateThemeToggle(document.documentElement.getAttribute("data-theme") || "light");
-
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-    if (!localStorage.getItem(THEME_KEY)) {
-      setTheme(e.matches ? "dark" : "light");
-    }
-  });
+  updateThemeToggle(document.documentElement.getAttribute("data-theme") || "dark");
 }
 
 if (document.readyState === "loading") {
