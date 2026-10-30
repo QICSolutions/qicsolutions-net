@@ -11,6 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/fraccalc.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/fraccalc/icons/icon-32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="/fraccalc/icons/icon-64.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/fraccalc/icons/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/fraccalc/icons/apple-touch-icon.png" />
 </head>
 <body class="fraccalc">
   <a class="skip" href="#main">Skip to content</a>
@@ -36,7 +40,7 @@
     <div class="container fc-inner">
     <section class="hero-fc" aria-label="Frac Calc">
       <div>
-        <img class="app-icon" id="app-icon" width="72" height="72" alt="Frac Calc app icon" />
+        <img class="app-icon" id="app-icon" width="72" height="72" alt="Frac Calc app icon" src="/fraccalc/icons/icon-192.png" srcset="/fraccalc/icons/icon-192.png 1x, /fraccalc/icons/icon-256.png 2x, /fraccalc/icons/icon-512.png 3x" />
         <p class="eyebrow">QIC Solutions LLC</p>
         <h1>Frac Calc</h1>
         <p class="subtitle">Fraction Calculator</p>
@@ -116,9 +120,6 @@
       <p>&copy; <span id="year">2026</span> QIC Solutions LLC · <code>net.qicsolutions.fraccalc</code></p>
     </div>
   </footer>
-  <script src="/frac-assets/icon_0.js"></script>
-  <script src="/frac-assets/icon_0b.js"></script>
-  <script src="/frac-assets/icon_1.js"></script>
   <script src="/frac-assets/feature_0.js"></script>
   <script src="/frac-assets/feature_0b.js"></script>
   <script src="/frac-assets/feature_1.js"></script>
@@ -147,11 +148,7 @@
   (function () {
     var A = window.FRAC_ASSETS;
     if (!A) return;
-    var icon = 'data:image/png;base64,' + A.icon;
     var feature = 'data:image/jpeg;base64,' + A.feature;
-    document.getElementById('app-icon').src = icon;
-    var link = document.createElement('link');
-    link.rel = 'icon'; link.href = icon; document.head.appendChild(link);
     document.getElementById('hero-art').src = feature;
     var shots = [
       [A.shot_calc, 'Calculation', 'Mixed, sixteenths, and decimal together'],
