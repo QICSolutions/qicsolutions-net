@@ -1,10 +1,6 @@
-/* Dark by default for everyone; only an explicit toggle choice (shared "qic-theme" key) overrides it. */
+/* QIC Solutions is dark mode only. Clear any old saved day/night choice and force dark. */
 (function () {
-  var theme = "dark";
-  try {
-    var stored = localStorage.getItem("qic-theme");
-    if (stored === "light" || stored === "dark") theme = stored;
-  } catch (e) {}
-  document.documentElement.setAttribute("data-theme", theme);
-  document.documentElement.style.colorScheme = theme;
+  try { localStorage.removeItem("qic-theme"); } catch (e) {}
+  document.documentElement.setAttribute("data-theme", "dark");
+  document.documentElement.style.colorScheme = "dark";
 })();

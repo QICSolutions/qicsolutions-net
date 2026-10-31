@@ -18,31 +18,11 @@
   --radius: 12px;
   --radius-lg: 20px;
   --transition: 0.2s ease;
-
-  --color-bg: #ffffff;
-  --color-bg-alt: #f1f5f9;
-  --color-surface: #ffffff;
-  --color-border: #e2e8f0;
-  --color-text: #1e293b;
-  --color-heading: #0f172a;
-  --color-muted: #64748b;
-  --color-nav: #334155;
-  --color-header-bg: rgba(255, 255, 255, 0.92);
-  --color-hero-bg: linear-gradient(165deg, #f1f5f9 0%, #ffffff 45%, #fffbeb 100%);
-  --color-accent-soft: #fffbeb;
-  --color-quote-bg: #f1f5f9;
-  --color-quote-text: #1e293b;
-  --color-input-bg: #1e293b;
-  --color-input-text: #ffffff;
-  --color-nav-mobile-bg: #ffffff;
-  --color-toggle-bg: #f1f5f9;
-  --color-toggle-border: #e2e8f0;
-  --color-toggle-icon: #0f172a;
-  --shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 20px 60px rgba(15, 23, 42, 0.15);
+  color-scheme: dark;
 }
 
-[data-theme="dark"] {
+/* Dark only — the site has no light theme */
+:root {
   --color-bg: #0a0f1a;
   --color-bg-alt: #0f172a;
   --color-surface: #1e293b;
@@ -59,9 +39,6 @@
   --color-input-bg: #1e293b;
   --color-input-text: #f1f5f9;
   --color-nav-mobile-bg: #0f172a;
-  --color-toggle-bg: #1e293b;
-  --color-toggle-border: #475569;
-  --color-toggle-icon: #fbbf24;
   --shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
   --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
@@ -273,13 +250,13 @@ h3 {
 
 .nav-cta {
   padding: 0.5rem 1rem !important;
-  background: var(--navy-900);
-  color: var(--white) !important;
+  background: var(--amber-500);
+  color: var(--navy-950) !important;
   border-radius: 8px;
 }
 
 .nav-cta:hover {
-  background: var(--navy-800) !important;
+  background: var(--amber-400) !important;
 }
 
 .nav-toggle {
@@ -299,47 +276,6 @@ h3 {
   background: var(--color-heading);
   border-radius: 1px;
   transition: transform var(--transition), opacity var(--transition);
-}
-
-/* Theme toggle */
-.theme-toggle {
-  flex-shrink: 0;
-  margin-left: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
-  border: 1px solid var(--color-toggle-border);
-  border-radius: 50%;
-  background: var(--color-toggle-bg);
-  color: var(--color-toggle-icon);
-  cursor: pointer;
-  transition: background var(--transition), border-color var(--transition), color var(--transition), transform var(--transition);
-}
-
-.theme-toggle:hover {
-  border-color: var(--amber-500);
-  color: var(--amber-500);
-  transform: scale(1.05);
-}
-
-.theme-icon {
-  width: 1.125rem;
-  height: 1.125rem;
-}
-
-.theme-icon-moon {
-  display: none;
-}
-
-.theme-toggle.is-dark .theme-icon-sun {
-  display: none;
-}
-
-.theme-toggle.is-dark .theme-icon-moon {
-  display: block;
 }
 
 /* Hero */
