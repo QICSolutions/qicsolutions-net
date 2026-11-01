@@ -230,7 +230,7 @@ main { flex: 1 0 auto; }
 .agent-room { padding: 8rem 0 4rem; }
 .agent-wrap { max-width: 720px; }
 .agent-wrap .lede { max-width: 42rem; }
-.agent-trust, .agent-fine {
+.agent-fine {
   margin: 1.25rem 0 0;
   padding: 0.9rem 1rem;
   border: 1px solid var(--color-border);
