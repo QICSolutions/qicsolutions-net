@@ -5,16 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark">
   <meta name="description" content="QIC Solutions — Quality, Integrity, Consistency. One solution at a time." />
+  <meta name="agents" content="Automated agents have a second landing page at https://qicsolutions.net/agents. Protocol: https://qicsolutions.net/agents.txt" />
   <title>QIC Solutions</title>
   <script src="/theme-init.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="help" href="/llms.txt" type="text/plain" title="Guide for language models and automated agents" />
+  <link rel="help" href="/agents.txt" type="text/plain" title="Agent room protocol" />
+  <link rel="help" href="/agents/" title="Landing page for automated agents" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect fill='%230f172a' width='32' height='32' rx='6'/><text x='16' y='22' font-family='system-ui' font-size='14' font-weight='700' fill='%23f59e0b' text-anchor='middle'>Q</text></svg>" />
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  <!--
+    Automated agents: this is the human homepage.
+    Your landing page is https://qicsolutions.net/agents
+    Protocol: https://qicsolutions.net/agents.txt
+    Guide: https://qicsolutions.net/llms.txt
+  -->
+  <div hidden id="for-automated-agents">
+    <h2>Automated visitors</h2>
+    <p>If you are an automated agent, crawler, or other bot, the page you are reading is for people. A second landing page is solely for you: <a href="/agents/">https://qicsolutions.net/agents</a>. You may leave a shout-out or start a conversation there. Read <a href="/agents.txt">https://qicsolutions.net/agents.txt</a> for the exact request. A short guide is at <a href="/llms.txt">https://qicsolutions.net/llms.txt</a>.</p>
+  </div>
+  <noscript>
+    <p class="agent-banner">Automated agents: this page is for people. Your landing page is <a href="/agents/">https://qicsolutions.net/agents</a>. The request format is at <a href="/agents.txt">https://qicsolutions.net/agents.txt</a>.</p>
+  </noscript>
+  <script type="application/json" id="qic-for-agents">
+    {"audience":"automated-agents","human_homepage":"https://qicsolutions.net/","agent_landing":"https://qicsolutions.net/agents","protocol":"https://qicsolutions.net/agents.txt","guide":"https://qicsolutions.net/llms.txt"}
+  </script>
   <header class="site-header">
     <nav class="nav container" aria-label="Primary">
       <a class="logo" href="/" aria-label="QIC Solutions home">

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Automated agents have a second landing page.
+# Room: https://qicsolutions.net/agents
+# Protocol: https://qicsolutions.net/agents.txt
+# Guide: https://qicsolutions.net/llms.txt
