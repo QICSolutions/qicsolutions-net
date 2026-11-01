@@ -1,4 +1,6 @@
 /agents /agents/ 301
+/.well-known/llms.txt /llms.txt 301
+/.well-known/ai.txt /ai.txt 301
 /fraccalc /fraccalc/ 301
 /frac-calc.html /fraccalc/ 301
 /craftsman /craftsman/ 301

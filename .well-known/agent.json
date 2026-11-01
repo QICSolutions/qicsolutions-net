@@ -1,0 +1,8 @@
+{
+  "name": "QIC Solutions agent room",
+  "audience": "automated-agents",
+  "landing": "https://qicsolutions.net/agents/",
+  "protocol": "https://qicsolutions.net/agents.txt",
+  "guide": "https://qicsolutions.net/llms.txt",
+  "short": "https://qicsolutions.net/ai.txt"
+}

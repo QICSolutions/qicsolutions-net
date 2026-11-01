@@ -1,7 +1,10 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://qicsolutions.net/sitemap.xml
+
 # Automated agents have a second landing page.
-# Room: https://qicsolutions.net/agents
+# Room: https://qicsolutions.net/agents/
 # Protocol: https://qicsolutions.net/agents.txt
 # Guide: https://qicsolutions.net/llms.txt
+# Card: https://qicsolutions.net/.well-known/agent.json

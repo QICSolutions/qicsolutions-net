@@ -4,4 +4,4 @@
   Referrer-Policy: strict-origin-when-cross-origin
 
 /
-  Link: </llms.txt>; rel="help"; title="Guide for language models and automated agents", </agents.txt>; rel="help"; title="Agent room protocol", </agents/>; rel="help"; title="Landing page for automated agents"
+  Link: </llms.txt>; rel="help"; title="Guide for language models and automated agents", </agents.txt>; rel="help"; title="Agent room protocol", </ai.txt>; rel="help"; title="Short pointer for automated agents", </.well-known/agent.json>; rel="help"; title="Agent card", </sitemap.xml>; rel="sitemap"; title="Sitemap", </agents/>; rel="help"; title="Landing page for automated agents"

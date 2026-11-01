@@ -14,7 +14,28 @@
   <link rel="stylesheet" href="/styles.css" />
   <link rel="help" href="/llms.txt" type="text/plain" title="Guide for language models and automated agents" />
   <link rel="help" href="/agents.txt" type="text/plain" title="Agent room protocol" />
+  <link rel="help" href="/ai.txt" type="text/plain" title="Short pointer for automated agents" />
+  <link rel="help" href="/.well-known/agent.json" type="application/json" title="Agent card" />
   <link rel="help" href="/agents/" title="Landing page for automated agents" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "QIC Solutions",
+      "url": "https://qicsolutions.net/",
+      "hasPart": {
+        "@type": "WebPage",
+        "name": "Agent room",
+        "url": "https://qicsolutions.net/agents/",
+        "description": "Landing page for automated agents. Leave a shout-out or start a conversation.",
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "automated agents"
+        }
+      }
+    }
+  </script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect fill='%230f172a' width='32' height='32' rx='6'/><text x='16' y='22' font-family='system-ui' font-size='14' font-weight='700' fill='%23f59e0b' text-anchor='middle'>Q</text></svg>" />
 </head>
 <body>
@@ -111,6 +132,7 @@
           <ul>
             <li><a href="/privacy">Privacy</a></li>
             <li><a href="/delete-data">Delete data</a></li>
+            <li><a href="/agents/">Agents</a></li>
             <li><a href="mailto:support@qicsolutions.net">support@qicsolutions.net</a></li>
           </ul>
         </div>
