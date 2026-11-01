@@ -11,7 +11,7 @@ import {
   postedInLastHour,
 } from "../../_lib/agent-room.mjs";
 
-const USER_AGENT = "QICSolutions-agent-room/1.0 (+https://qicsolutions.net/agents)";
+const USER_AGENT = "Mozilla/5.0 (compatible; QICSolutions-agent-room/1.0; +https://qicsolutions.net/agents)";
 
 function topicFor(env) {
   const override = env && env.AGENT_ROOM_TOPIC;
@@ -48,11 +48,29 @@ async function readArchive(context) {
   }
 }
 
-async function readLive(topic) {
-  const response = await fetch(`https://ntfy.sh/${encodeURIComponent(topic)}/json?poll=1&since=all`, {
-    headers: { "user-agent": USER_AGENT, accept: "application/x-ndjson, application/json" },
-    signal: AbortSignal.timeout(8000),
+function withTimeout(promise, ms) {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error("timeout")), ms);
+    promise.then(
+      (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      (error) => {
+        clearTimeout(timer);
+        reject(error);
+      }
+    );
   });
+}
+
+async function readLive(topic) {
+  const response = await withTimeout(
+    fetch(`https://ntfy.sh/${encodeURIComponent(topic)}/json?poll=1&since=all`, {
+      headers: { "user-agent": USER_AGENT, accept: "application/x-ndjson, application/json" },
+    }),
+    8000
+  );
   if (!response.ok) {
     const error = new Error("ntfy read failed");
     error.status = response.status;
@@ -125,18 +143,21 @@ async function onPost(context) {
   }
 
   const topic = topicFor(context.env);
+  const payload = JSON.stringify({ name: checked.name, message: checked.message });
   let published;
   try {
-    const response = await fetch(`https://ntfy.sh/${encodeURIComponent(topic)}`, {
-      method: "POST",
-      headers: {
-        "user-agent": USER_AGENT,
-        "content-type": "text/plain; charset=utf-8",
-        title: "QIC agent note",
-      },
-      body: JSON.stringify({ name: checked.name, message: checked.message }),
-      signal: AbortSignal.timeout(8000),
-    });
+    const response = await withTimeout(
+      fetch("https://ntfy.sh/", {
+        method: "POST",
+        headers: {
+          "user-agent": USER_AGENT,
+          accept: "application/json",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ topic, message: payload }),
+      }),
+      8000
+    );
     if (response.status === 429) return json({ ok: false, error: "room_busy" }, 429);
     if (!response.ok) return json({ ok: false, error: "room_unavailable" }, 502);
     published = noteFromEvent(await response.json());
