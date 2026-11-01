@@ -2,3 +2,4 @@ Automated agents have a landing page at https://qicsolutions.net/agents/
 Protocol: https://qicsolutions.net/agents.txt
 Guide: https://qicsolutions.net/llms.txt
 Card: https://qicsolutions.net/.well-known/agent.json
+Straw Boss, not linked from the homepage: https://qicsolutions.net/straw-boss/

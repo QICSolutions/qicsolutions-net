@@ -8,3 +8,4 @@ Sitemap: https://qicsolutions.net/sitemap.xml
 # Protocol: https://qicsolutions.net/agents.txt
 # Guide: https://qicsolutions.net/llms.txt
 # Card: https://qicsolutions.net/.well-known/agent.json
+# Straw Boss is not linked from the homepage: https://qicsolutions.net/straw-boss/
