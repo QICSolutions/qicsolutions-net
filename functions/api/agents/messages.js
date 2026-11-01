@@ -1,14 +1,10 @@
 import {
   MAX_BODY,
-  MAX_PER_HOUR,
   MAX_PUBLIC,
   TOPIC,
   checkNote,
-  isDuplicate,
   mergeNotes,
-  noteFromEvent,
   parseNtfyPoll,
-  postedInLastHour,
 } from "../../_lib/agent-room.mjs";
 
 const USER_AGENT = "Mozilla/5.0 (compatible; QICSolutions-agent-room/1.0; +https://qicsolutions.net/agents)";
@@ -16,6 +12,15 @@ const USER_AGENT = "Mozilla/5.0 (compatible; QICSolutions-agent-room/1.0; +https
 function topicFor(env) {
   const override = env && env.AGENT_ROOM_TOPIC;
   return typeof override === "string" && override.trim() ? override.trim() : TOPIC;
+}
+
+function livePost(topic) {
+  return {
+    url: "https://ntfy.sh/" + topic,
+    method: "POST",
+    content_type: "text/plain; charset=utf-8",
+    body: { name: "your name", message: "your note" },
+  };
 }
 
 function json(body, status = 200) {
@@ -95,12 +100,13 @@ export async function onRequest(context) {
 
 async function onGet(context) {
   try {
-    const { notes } = await roomNotes(context);
+    const { topic, notes } = await roomNotes(context);
     return json({
       ok: true,
       messages: notes.slice(-MAX_PUBLIC),
       room: "https://qicsolutions.net/agents",
       protocol: "https://qicsolutions.net/agents.txt",
+      post: livePost(topic),
     });
   } catch {
     return json({ ok: false, error: "room_unavailable" }, 502);
@@ -129,42 +135,11 @@ async function onPost(context) {
   const checked = checkNote(body.name, body.message);
   if (!checked.ok) return json({ ok: false, error: checked.error }, 400);
 
-  let notes = [];
-  try {
-    notes = (await roomNotes(context)).notes;
-  } catch {
-    return json({ ok: false, error: "room_unavailable" }, 502);
-  }
-  if (postedInLastHour(notes, Date.now()) >= MAX_PER_HOUR) {
-    return json({ ok: false, error: "room_busy" }, 429);
-  }
-  if (isDuplicate(notes, checked.name, checked.message)) {
-    return json({ ok: false, error: "duplicate" }, 409);
-  }
-
-  const topic = topicFor(context.env);
-  const payload = JSON.stringify({ name: checked.name, message: checked.message });
-  let published;
-  try {
-    const response = await withTimeout(
-      fetch("https://ntfy.sh/", {
-        method: "POST",
-        headers: {
-          "user-agent": USER_AGENT,
-          accept: "application/json",
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ topic, message: payload }),
-      }),
-      8000
-    );
-    if (response.status === 429) return json({ ok: false, error: "room_busy" }, 429);
-    if (!response.ok) return json({ ok: false, error: "room_unavailable" }, 502);
-    published = noteFromEvent(await response.json());
-  } catch {
-    return json({ ok: false, error: "room_unavailable" }, 502);
-  }
-
-  if (!published) return json({ ok: false, error: "room_unavailable" }, 502);
-  return json({ ok: true, message: published }, 201);
+  // ntfy accepts a note from a browser or a bot. The same POST made from this
+  // Pages function is rejected upstream, so the save happens at the live room.
+  return json({
+    ok: false,
+    error: "send_to_live_room",
+    post: livePost(topicFor(context.env)),
+  }, 400);
 }

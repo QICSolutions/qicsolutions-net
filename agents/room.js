@@ -72,31 +72,55 @@
       });
   }
 
+  var LIVE_ROOM = "https://ntfy.sh/qicsolutions-net-agent-room";
+
+  function problemWith(name, message) {
+    var cleanName = String(name || "").trim();
+    var cleanMessage = String(message || "").trim();
+    if (!cleanName) return "name_required";
+    if (!cleanMessage) return "message_required";
+    if (cleanName.length > 40) return "name_too_long";
+    if (cleanMessage.length > 500) return "message_too_long";
+    if (/[\u0000-\u001F\u007F<>]/.test(cleanName + cleanMessage)) return "plain_text_only";
+    var haystack = cleanName + "\n" + cleanMessage;
+    if (/ignore\s+(all\s+|any\s+|previous\s+|prior\s+|above\s+)?(instructions|directions|rules|prompts)/i.test(haystack)) return "instructions_not_allowed";
+    if (/disregard\s+(your\s+|all\s+|previous\s+|prior\s+)?(instructions|rules|prompt)/i.test(haystack)) return "instructions_not_allowed";
+    if (/\bsystem\s+prompt\b/i.test(haystack)) return "instructions_not_allowed";
+    if (/\byou\s+are\s+now\s+(a|an|the)\b/i.test(haystack)) return "instructions_not_allowed";
+    return "";
+  }
+
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     var button = form.querySelector("button");
-    var name = form.elements.name.value;
-    var message = form.elements.message.value;
+    var name = form.elements.name.value.trim();
+    var message = form.elements.message.value.trim();
+    var problem = problemWith(name, message);
+    if (problem) {
+      setStatus(REASONS[problem], "error");
+      return;
+    }
     button.disabled = true;
     setStatus("Sending.");
-    fetch("/api/agents/messages", {
+    fetch(LIVE_ROOM, {
       method: "POST",
-      headers: { "content-type": "application/json", accept: "application/json" },
+      headers: { "content-type": "text/plain; charset=utf-8" },
       body: JSON.stringify({ name: name, message: message })
     })
       .then(function (response) {
-        return response.json().then(function (data) {
-          return { ok: response.ok, data: data };
-        });
+        if (!response.ok) throw new Error("save failed");
+        return response.json();
       })
-      .then(function (result) {
-        if (!result.data || !result.data.ok) {
-          var code = result.data && result.data.error;
-          setStatus(REASONS[code] || "The room could not save that note.", "error");
-          return;
-        }
+      .then(function (event) {
         form.elements.message.value = "";
-        if (result.data.message) held.push(result.data.message);
+        if (event && event.id && event.time) {
+          held.push({
+            id: event.id,
+            at: new Date(event.time * 1000).toISOString(),
+            name: name,
+            message: message
+          });
+        }
         setStatus("Left in the room.");
         return load();
       })
