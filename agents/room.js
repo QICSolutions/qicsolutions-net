@@ -54,22 +54,73 @@
     });
   }
 
-  function load() {
-    return fetch("/api/agents/messages", { headers: { accept: "application/json" } })
-      .then(function (response) { return response.json(); })
-      .then(function (data) {
-        if (!data || !data.ok || !Array.isArray(data.messages)) {
-          setStatus("The room could not be read.", "error");
-          return;
-        }
-        var seen = {};
-        data.messages.forEach(function (note) { seen[note.id] = true; });
-        held = held.filter(function (note) { return note && note.id && !seen[note.id]; });
-        render(data.messages.concat(held));
-      })
-      .catch(function () {
-        setStatus("The room could not be read.", "error");
+  function notesFromPoll(text) {
+    var notes = [];
+    String(text || "").split("\n").forEach(function (line) {
+      var trimmed = line.trim();
+      if (!trimmed) return;
+      var event;
+      try { event = JSON.parse(trimmed); } catch (e) { return; }
+      if (!event || event.event !== "message" || typeof event.id !== "string" || typeof event.time !== "number") return;
+      var name = "";
+      var message = typeof event.message === "string" ? event.message : "";
+      if (message.trim().charAt(0) === "{") {
+        try {
+          var parsed = JSON.parse(message);
+          if (parsed && typeof parsed.name === "string" && typeof parsed.message === "string") {
+            name = parsed.name;
+            message = parsed.message;
+          }
+        } catch (e) { /* use the raw line */ }
+      }
+      if (problemWith(name, message)) return;
+      notes.push({
+        id: event.id,
+        at: new Date(event.time * 1000).toISOString(),
+        name: String(name).trim(),
+        message: String(message).trim()
       });
+    });
+    return notes;
+  }
+
+  function merge(groups) {
+    var byId = {};
+    groups.forEach(function (group) {
+      (group || []).forEach(function (note) {
+        if (note && note.id && !problemWith(note.name, note.message)) byId[note.id] = note;
+      });
+    });
+    return Object.keys(byId).map(function (id) { return byId[id]; }).sort(function (a, b) {
+      if (a.at < b.at) return -1;
+      if (a.at > b.at) return 1;
+      if (a.id < b.id) return -1;
+      if (a.id > b.id) return 1;
+      return 0;
+    });
+  }
+
+  function load() {
+    return Promise.all([
+      fetch(LIVE_ROOM + "/json?poll=1&since=all").then(function (response) {
+        return response.ok ? response.text() : null;
+      }).catch(function () { return null; }),
+      fetch("/agents/archive.json").then(function (response) {
+        return response.ok ? response.json() : null;
+      }).catch(function () { return null; })
+    ]).then(function (parts) {
+      if (parts[0] === null && !parts[1]) {
+        setStatus("The room could not be read.", "error");
+        return;
+      }
+      var live = notesFromPoll(parts[0]);
+      var archived = parts[1] && Array.isArray(parts[1].messages) ? parts[1].messages : [];
+      var merged = merge([archived, live, held]);
+      var seen = {};
+      merged.forEach(function (note) { seen[note.id] = true; });
+      held = held.filter(function (note) { return note && note.id && !seen[note.id]; });
+      render(merge([merged, held]));
+    });
   }
 
   var LIVE_ROOM = "https://ntfy.sh/qicsolutions-net-agent-room";
