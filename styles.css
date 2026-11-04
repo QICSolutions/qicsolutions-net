@@ -139,7 +139,8 @@ main { flex: 1 0 auto; }
     radial-gradient(circle at 10% 80%, rgba(15, 23, 42, 0.04) 0%, transparent 40%);
 }
 .hero-inner { position: relative; display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem 3rem; flex-wrap: wrap; }
-.hero h1 { max-width: 16ch; }
+.hero h1 { max-width: none; }
+.hero h1 em { display: block; white-space: nowrap; font-size: clamp(1.6rem, 7.5vw, 1em); }
 .lede { font-size: 1.125rem; color: var(--color-muted); margin-top: 1rem; font-weight: 500; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
 
